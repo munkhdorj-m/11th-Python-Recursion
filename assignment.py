@@ -9,7 +9,7 @@ def fibonacci(n):
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
 
-
+ 
 # ------------------- Exercise 2: Count Digits -------------------
 def count_digits(n):
     n = abs(n)  # handle negative numbers
