@@ -1,20 +1,13 @@
-# test_recursion_simple.py
 import pytest
+import inspect
 from assignment import fibonacci, count_digits, sum_digits
 
-def detects_recursion(func):
-    called_inside = {"inside": False}
-
-    def wrapper(*args, **kwargs):
-        if wrapper._active:
-            called_inside["inside"] = True
-        wrapper._active = True
-        result = func(*args, **kwargs)
-        wrapper._active = False
-        return result
-
-    wrapper._active = False
-    return wrapper, called_inside
+def check_no_loop(func):
+    """Return True if function does NOT contain 'for' or 'while'."""
+    source = inspect.getsource(func)
+    if "for " in source or "while " in source:
+        return False
+    return True
 
 @pytest.mark.parametrize("n, expected", [
     (0, 0),
@@ -25,11 +18,10 @@ def detects_recursion(func):
     (10, 55)
 ])
 def test1(n, expected):
-    wrapped, state = detects_recursion(fibonacci)
-    result = wrapped(n)
-    assert result == expected
-    assert state["inside"], "fibonacci() does not use recursion!"
-    
+    # Fail test if student used a loop
+    assert check_no_loop(fibonacci), "fibonacci() uses a loop! Use recursion instead."
+    assert fibonacci(n) == expected
+
 @pytest.mark.parametrize("n, expected", [
     (0, 1),
     (5, 1),
@@ -37,10 +29,8 @@ def test1(n, expected):
     (1234567890, 10)
 ])
 def test2(n, expected):
-    wrapped, state = detects_recursion(count_digits)
-    result = wrapped(n)
-    assert result == expected
-    assert state["inside"], "count_digits() does not use recursion!"
+    assert check_no_loop(count_digits), "count_digits() uses a loop! Use recursion instead."
+    assert count_digits(n) == expected
 
 @pytest.mark.parametrize("n, expected", [
     (0, 0),
@@ -50,7 +40,5 @@ def test2(n, expected):
     (9999, 36)
 ])
 def test3(n, expected):
-    wrapped, state = detects_recursion(sum_digits)
-    result = wrapped(n)
-    assert result == expected
-    assert state["inside"], "sum_digits() does not use recursion!"
+    assert check_no_loop(sum_digits), "sum_digits() uses a loop! Use recursion instead."
+    assert sum_digits(n) == expected
