@@ -10,74 +10,54 @@ https://drive.google.com/file/d/1Dfu8jYSOsRFwReeNXO6nA0ffTYqtH2BT/view?usp=shari
 
 **Problem:**
  
-**Student Grades (Encapsulation):**  
-Create a Student class where the grade is private and safe from incorrect modification.  
-
-Requirements:   
-Private attribute: 
-
-* `__grade`
-  
-Public methods:
-
-* `set_grade(val)` - Must be 0–100  
-* `get_grade()`
-  
-Public attribute:
-
-* `name`   
+Write a recursive function `fibonacci(n)` that returns the n-th Fibonacci number.   
+Fibonacci sequence starts as:   
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144....    
+F(0) = 0, F(1) = 1 F(n) = F(n - 1) + F(n - 2)    
 
 Example:
 
-    Input:
-       s = Student("Bob")
-       s.set_grade(85)
-       print(s.get_grade())
-
-    Output:
-       85
-  
+    Input: 6
+    Output: 8 
+    
+    Input: 0
+    Output: 0 
+    
+    Input: 10
+    Output: 55 
+    
 ---
 
 ## Exercise 2
 
 **Problem:**
-Create a class `TemperatureSensor` that simulates reading and updating temperature values safely.
-
-Requirements:  
-
-Private attribute: 
-* `__temperature`
-
-Public methods:   
-* `set_temperature(value)`  
-    * Accepts only values between –50°C to 150°C
-    * If the value is invalid, ignore it
-* `get_temperature()` 
-    * Returns the current temperature
-* `increase(amount)`
-    * Increase temperature
-    * Must respect the –50 to 150 range
-* `decrease(amount)`
-    * Decrease temperature
-    * Also must respect the range
-
-Public attribute: 
-* `location` (e.g., "Server Room")
+Write a recursive function `count_digits(n)` that returns how many digits are in the number n.
 
 Example:
 
-    Input:
-         sensor = TemperatureSensor("Server Room")
-         sensor.set_temperature(25)
-         sensor.increase(10)
-         print(sensor.get_temperature())   # 35
-         sensor.decrease(100)
-         print(sensor.get_temperature())   # -50 (min limit)
+    Input: 5029
+    Output: 4
 
-    Output:
-        35
-        -50
+    Input: 100000
+    Output: 6
 
+    Input: 7
+    Output: 1
+    
+---
+
+## Exercise 3
+
+**Problem:**
+Write a recursive function `sum_digits(n)` that returns the sum of all digits in the number.
+
+Example:
+
+    Input: 5029
+    Output: 16
+    
+    Input: 42
+    Output: 6
+    
 ---
 
